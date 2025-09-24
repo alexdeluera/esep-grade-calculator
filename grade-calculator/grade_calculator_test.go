@@ -2,6 +2,33 @@ package esepunittests
 
 import "testing"
 
+func TestGradeTypeString(t *testing.T) {
+	if Assignment.String() != "assignment" {
+		t.Errorf("expected assignment, got %s", Assignment.String())
+	}
+	if Exam.String() != "exam" {
+		t.Errorf("expected exam, got %s", Exam.String())
+	}
+	if Essay.String() != "essay" {
+		t.Errorf("expected essay, got %s", Essay.String())
+	}
+}
+
+func TestGetGradeExtra(t *testing.T) {
+	expected_value := "A"
+
+	gradeCalculator := NewGradeCalculator()
+
+	gradeCalculator.AddGrade("open source assignment", 102, Assignment)
+	gradeCalculator.AddGrade("exam 1", 103, Exam)
+	gradeCalculator.AddGrade("essay on ai ethics", 105, Essay)
+	actual_value := gradeCalculator.GetFinalGrade()
+
+	if expected_value != actual_value {
+		t.Errorf("Expected GetGrade to return '%s'; got '%s' instead", expected_value, actual_value)
+	}
+}
+
 func TestGetGradeA(t *testing.T) {
 	expected_value := "A"
 
@@ -71,9 +98,9 @@ func TestGetGradeF(t *testing.T) {
 
 	gradeCalculator := NewGradeCalculator()
 
-	gradeCalculator.AddGrade("open source assignment", 10, Assignment)
-	gradeCalculator.AddGrade("exam 1", 9, Exam)
-	gradeCalculator.AddGrade("essay on ai ethics", 9, Essay)
+	gradeCalculator.AddGrade("open source assignment", 1, Assignment)
+	gradeCalculator.AddGrade("exam 1", 2, Exam)
+	gradeCalculator.AddGrade("essay on ai ethics", 3, Essay)
 
 	actual_value := gradeCalculator.GetFinalGrade()
 
