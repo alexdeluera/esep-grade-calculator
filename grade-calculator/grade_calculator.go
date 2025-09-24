@@ -55,7 +55,7 @@ func (gc *GradeCalculator) AddGrade(name string, grade int, gradeType GradeType)
 	gc.grades = append(gc.grades, Grade{
 		Name:  name,
 		Grade: grade,
-		Type:  Assignment,
+		Type:  gradeType,
 	})
 
 }
